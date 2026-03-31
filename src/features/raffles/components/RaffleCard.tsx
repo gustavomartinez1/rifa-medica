@@ -157,9 +157,6 @@ export function RaffleCard({ raffle, selectedTickets, onSelectTicket, onDeselect
             <span className="w-3 h-3 bg-yellow-400 rounded" /> En espera
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-3 h-3 bg-orange-500 rounded" /> Pendiente
-          </span>
-          <span className="flex items-center gap-1">
             <span className="w-3 h-3 bg-gray-400 rounded" /> Vendido
           </span>
         </div>

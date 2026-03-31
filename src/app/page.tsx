@@ -98,11 +98,22 @@ export default function Home() {
       try {
         const ids = JSON.parse(stored);
         setReservedTicketIds(ids);
+        
+        // Check if these tickets are still en_espera in the database
+        // If so, restore the payment flow
+        setTimeout(() => {
+          const allTickets = raffles.flatMap(r => r.tickets);
+          const reservedTickets = allTickets.filter(t => ids.includes(t.id) && t.status === 'en_espera');
+          if (reservedTickets.length > 0) {
+            setSelectedTickets(reservedTickets);
+            setStep('payment');
+          }
+        }, 2000); // Wait for data to load
       } catch (e) {
         console.error('Error parsing stored ticket IDs');
       }
     }
-  }, []);
+  }, [raffles]);
 
   const handleSelectTicket = (ticket: Ticket) => {
     if (ticket.status !== TICKET_STATES.DISPONIBLE) return;
@@ -226,6 +237,9 @@ export default function Home() {
             <div className="w-24 h-1 bg-emerald-500 mx-auto rounded-full" />
             <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
               Elige tus boletos favoritos y participa para ganar premios increíbles
+            </p>
+            <p className="text-emerald-600 mt-3 text-sm font-medium max-w-2xl mx-auto">
+              🎟️ Cada boleto cuesta $50 MXN — ¡Mientras más boletos, más oportunidades de ganar!
             </p>
           </div>
 
