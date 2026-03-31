@@ -45,12 +45,13 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Update tickets to pendiente
+    // Update tickets to pagado (vendido)
     const { data: updatedTickets, error: updateError } = await supabase
       .from('tickets')
       .update({
-        status: 'pendiente',
+        status: 'pagado',
         payment_claimed_at: new Date().toISOString(),
+        paid_at: new Date().toISOString(),
       })
       .in('id', ticketIds)
       .eq('status', 'en_espera')
