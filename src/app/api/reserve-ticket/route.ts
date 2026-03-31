@@ -7,7 +7,7 @@ const ReserveSchema = z.object({
   buyerInfo: z.object({
     name: z.string().min(1),
     phone: z.string().min(1),
-    email: z.string().email().optional(),
+    email: z.string().optional().or(z.literal('')),
     address: z.string().min(1),
   }),
 });
