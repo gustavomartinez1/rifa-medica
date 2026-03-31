@@ -238,9 +238,11 @@ export default function Home() {
             <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
               Elige tus boletos favoritos y participa para ganar premios increíbles
             </p>
-            <p className="text-emerald-600 mt-3 text-sm font-medium max-w-2xl mx-auto">
-              🎟️ Cada boleto cuesta $50 MXN — ¡Mientras más boletos, más oportunidades de ganar!
-            </p>
+            <div className="flex flex-wrap justify-center gap-3 mt-4 text-xs md:text-sm font-medium">
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 bg-green-500 rounded-full" /> Disponible</span>
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 bg-yellow-400 rounded-full" /> En espera</span>
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 bg-gray-400 rounded-full" /> Vendido</span>
+            </div>
           </div>
 
           {loading ? (
