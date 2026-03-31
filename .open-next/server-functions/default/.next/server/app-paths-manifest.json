@@ -1,0 +1,9 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/reserve-ticket/route": "app/api/reserve-ticket/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/claim-payment/route": "app/api/claim-payment/route.js",
+  "/api/admin/update-ticket/route": "app/api/admin/update-ticket/route.js",
+  "/page": "app/page.js",
+  "/admin/page": "app/admin/page.js"
+}
