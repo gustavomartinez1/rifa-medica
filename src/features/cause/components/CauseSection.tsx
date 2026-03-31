@@ -45,7 +45,6 @@ export function CauseSection({ imageSrc = '/images/Felix_Martrinez.jpeg' }: Caus
             </p>
             
             <p className="text-lg text-gray-600 leading-relaxed">
-              Tu participación hace una diferencia real en la vida de Felix y su familia. 
               Gracias por apoyar esta causa.
             </p>
 

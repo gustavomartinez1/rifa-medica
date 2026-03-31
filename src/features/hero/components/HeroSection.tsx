@@ -29,10 +29,6 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
           <span className="text-emerald-600">tratamiento médico de Felix</span>
         </h1>
 
-        <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-          Participa en nuestra rifa benéfica y contribuye a mejorar la vida de Felix Octavio Martinez Hernandez
-        </p>
-
         {/* Countdown */}
         <div className="mb-10">
           <p className="text-sm text-gray-500 mb-4">La rifa se realizará el:</p>
