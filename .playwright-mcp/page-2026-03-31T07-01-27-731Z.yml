@@ -1,0 +1,13 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Panel de Administración" [level=1] [ref=e5]
+      - paragraph [ref=e6]: Ingresa la contraseña para acceder
+    - generic [ref=e7]:
+      - textbox "Contraseña" [active] [ref=e8]
+      - paragraph [ref=e21]: Contraseña incorrecta
+      - button "Iniciar sesión" [ref=e9]
+    - paragraph [ref=e10]: "Contraseña: rifa2026"
+  - button "Open Next.js Dev Tools" [ref=e16] [cursor=pointer]:
+    - img [ref=e17]
+  - alert [ref=e20]

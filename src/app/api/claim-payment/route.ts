@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
 
     // Build WhatsApp message
     const raffleName = ticketsBeforeUpdate[0]?.raffles?.name || 'Rifa';
-    const ticketNumbers = ticketsBeforeUpdate.map((t: any) => `#${t.ticket_number}`).join(', ');
+    const ticketNumbers = ticketsBeforeUpdate.map((t: { ticket_number: number }) => `#${t.ticket_number}`).join(', ');
     const total = ticketsBeforeUpdate.length * 50;
     const name = buyerInfo?.name || ticketsBeforeUpdate[0]?.buyer_name || 'N/A';
     const phone = buyerInfo?.phone || ticketsBeforeUpdate[0]?.buyer_phone || 'N/A';
