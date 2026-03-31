@@ -6,11 +6,11 @@ import { runWithCloudflareRequestContext } from "./cloudflare/init.js";
 import { maybeGetSkewProtectionResponse } from "./cloudflare/skew-protection.js";
 // @ts-expect-error: Will be resolved by wrangler build
 import { handler as middlewareHandler } from "./middleware/handler.mjs";
-//@ts-expect-error: Will be resolved by wrangler build
+//@ts-expect-error: resolved by wrangler build
 export { DOQueueHandler } from "./.build/durable-objects/queue.js";
-//@ts-expect-error: Will be resolved by wrangler build
+//@ts-expect-error: resolved by wrangler build
 export { DOShardedTagCache } from "./.build/durable-objects/sharded-tag-cache.js";
-//@ts-expect-error: Will be resolved by wrangler build
+//@ts-expect-error: resolved by wrangler build
 export { BucketCachePurge } from "./.build/durable-objects/bucket-cache-purge.js";
 export default {
     async fetch(request, env, ctx) {
