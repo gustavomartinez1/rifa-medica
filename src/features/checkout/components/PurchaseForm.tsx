@@ -76,43 +76,44 @@ export function PurchaseForm({ selectedTickets, onSubmit, isLoading }: PurchaseF
   if (selectedTickets.length === 0) return null;
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-bold text-gray-900">Completar compra</h3>
+    <div className="bg-white rounded-2xl shadow-xl border border-gray-100">
+      {/* Header - compact on mobile */}
+      <div className="flex items-center justify-between px-4 pt-4 md:px-6 md:pt-6 mb-4 md:mb-6">
+        <h3 className="text-lg md:text-xl font-bold text-gray-900">Completar compra</h3>
         {timeLeft > 0 && (
-          <div className="flex items-center gap-2 bg-yellow-50 px-3 py-1 rounded-full">
-            <svg className="w-4 h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center gap-1.5 bg-yellow-50 px-2.5 py-1 rounded-full">
+            <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span className="text-sm font-medium text-yellow-700">
-              Tiempo restante: {formatTime(timeLeft)}
+            <span className="text-xs md:text-sm font-medium text-yellow-700">
+              {formatTime(timeLeft)}
             </span>
           </div>
         )}
       </div>
 
-      {/* Selected tickets summary */}
-      <div className="mb-6 p-4 bg-emerald-50 rounded-xl">
-        <p className="font-medium text-emerald-800 mb-2">
+      {/* Selected tickets summary - compact */}
+      <div className="mx-4 md:mx-6 mb-4 md:mb-6 p-3 md:p-4 bg-emerald-50 rounded-xl">
+        <p className="font-medium text-emerald-800 mb-1.5 text-sm">
           Boletos seleccionados:
         </p>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {selectedTickets.map((t) => (
             <span
               key={t.id}
-              className="inline-flex items-center px-3 py-1 bg-white border border-emerald-200 rounded-full text-sm font-medium text-emerald-700"
+              className="inline-flex items-center px-2.5 py-0.5 bg-white border border-emerald-200 rounded-full text-xs md:text-sm font-medium text-emerald-700"
             >
               #{t.ticket_number}
             </span>
           ))}
         </div>
-        <p className="mt-2 text-lg font-bold text-emerald-800">
+        <p className="mt-2 text-base md:text-lg font-bold text-emerald-800">
           Total: ${selectedTickets.length * 50} MXN
         </p>
       </div>
 
-      {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Form - compact spacing */}
+      <form onSubmit={handleSubmit} className="space-y-3 px-4 pb-4 md:px-6 md:pb-6">
         <Input
           label="Nombre completo"
           placeholder="Tu nombre completo"
@@ -149,17 +150,17 @@ export function PurchaseForm({ selectedTickets, onSubmit, isLoading }: PurchaseF
             value={formData.address}
             onChange={(e) => updateField('address', e.target.value)}
             className={`
-              w-full px-4 py-2 border rounded-lg transition-colors duration-200
+              w-full px-3 py-2 text-sm border rounded-lg transition-colors duration-200
               focus:outline-none focus:ring-2 focus:ring-offset-1
               ${errors.address 
                 ? 'border-red-500 focus:ring-red-500' 
                 : 'border-gray-300 focus:ring-emerald-500'
               }
             `}
-            rows={3}
+            rows={2}
             required
           />
-          {errors.address && <p className="mt-1 text-sm text-red-600">{errors.address}</p>}
+          {errors.address && <p className="mt-1 text-xs text-red-600">{errors.address}</p>}
         </div>
 
         <Button
@@ -172,7 +173,7 @@ export function PurchaseForm({ selectedTickets, onSubmit, isLoading }: PurchaseF
         </Button>
 
         {timeLeft === 0 && (
-          <p className="text-center text-red-600 text-sm">
+          <p className="text-center text-red-600 text-xs">
             Tu sesión ha expirado. Por favor selecciona los boletos nuevamente.
           </p>
         )}

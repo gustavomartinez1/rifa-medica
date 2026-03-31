@@ -19,6 +19,7 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
+      // Prevent body scroll when modal is open
       document.body.style.overflow = 'hidden';
     }
 
@@ -33,15 +34,21 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
+      // KEY FIX: overflow-y-auto allows scrolling, items-start + pt-4 prevents centering issues on small screens
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
+      style={{ minHeight: '100vh', padding: '1rem' }}
       onClick={(e) => {
         if (e.target === overlayRef.current) onClose();
       }}
     >
-      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl animate-in zoom-in-95 duration-200">
+      {/* Spacer for vertical centering on larger screens */}
+      <div className="flex-1 min-h-[2rem]" />
+      
+      {/* Modal content - scrollable wrapper */}
+      <div className="relative w-full max-w-lg my-4 bg-white rounded-2xl shadow-2xl animate-in zoom-in-95 duration-200">
         {title && (
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-            <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
+          <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4 border-b border-gray-100">
+            <h2 className="text-lg md:text-xl font-semibold text-gray-900">{title}</h2>
             <button
               onClick={onClose}
               className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
@@ -52,8 +59,11 @@ export function Modal({ isOpen, onClose, children, title }: ModalProps) {
             </button>
           </div>
         )}
-        <div className="p-6">{children}</div>
+        <div className="px-4 py-4 md:px-6 md:py-6">{children}</div>
       </div>
+
+      {/* Spacer for vertical centering on larger screens */}
+      <div className="flex-1 min-h-[2rem]" />
     </div>
   );
 }
