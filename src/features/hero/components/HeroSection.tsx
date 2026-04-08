@@ -1,13 +1,25 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { CountdownTimer } from './CountdownTimer';
 import { Button } from '@/shared/ui/Button';
+import { RAFFLE_DATE } from '@/config/constants';
 
 interface HeroSectionProps {
   onCtaClick: () => void;
 }
 
 export function HeroSection({ onCtaClick }: HeroSectionProps) {
+  const [raffleEnded, setRaffleEnded] = useState(false);
+
+  useEffect(() => {
+    const now = new Date();
+    const raffleDate = new Date(RAFFLE_DATE);
+    if (now > raffleDate) {
+      setRaffleEnded(true);
+    }
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 via-white to-emerald-50 overflow-hidden">
       {/* Background decoration */}
@@ -18,28 +30,55 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 py-16 md:py-24 text-center">
         {/* Header badge */}
-        <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium mb-8">
-          <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-          Rifa Benéfica
-        </div>
+        {raffleEnded ? (
+          <div className="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-medium mb-8">
+            <span className="w-2 h-2 bg-yellow-500 rounded-full" />
+            Rifa Terminada
+          </div>
+        ) : (
+          <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium mb-8">
+            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+            Rifa Benéfica
+          </div>
+        )}
 
         {/* Main heading */}
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-          Ayúdanos a recaudación fondos para el{' '}
-          <span className="text-emerald-600">tratamiento médico de Felix</span>
+          {raffleEnded ? (
+            <>
+              ¡Gracias por apoyar a{' '}
+              <span className="text-emerald-600">Felix!</span>
+            </>
+          ) : (
+            <>
+              Ayúdanos a recaudación fondos para el{' '}
+              <span className="text-emerald-600">tratamiento médico de Felix</span>
+            </>
+          )}
         </h1>
 
-        {/* Countdown */}
+        {/* Countdown or Result message */}
         <div className="mb-10">
-          <p className="text-sm text-gray-500 mb-4">La rifa se realizará el:</p>
-          <CountdownTimer />
-          <p className="text-sm text-gray-500 mt-4">8 de Abril de 2026, 5:00 PM</p>
+          {raffleEnded ? (
+            <div className="bg-emerald-100 rounded-2xl p-6 max-w-md mx-auto">
+              <p className="text-xl text-emerald-800 font-semibold mb-2">¡El sorte ya se realizó!</p>
+              <p className="text-emerald-700">Consulta los ganadores abajo</p>
+            </div>
+          ) : (
+            <>
+              <p className="text-sm text-gray-500 mb-4">La rifa se realizará el:</p>
+              <CountdownTimer />
+              <p className="text-sm text-gray-500 mt-4">8 de Abril de 2026, 5:00 PM</p>
+            </>
+          )}
         </div>
 
         {/* CTA */}
-        <Button size="lg" onClick={onCtaClick} className="shadow-xl hover:shadow-2xl">
-          Ver rifas disponibles
-        </Button>
+        {!raffleEnded && (
+          <Button size="lg" onClick={onCtaClick} className="shadow-xl hover:shadow-2xl">
+            Ver rifas disponibles
+          </Button>
+        )}
 
         {/* Trust badges */}
         <div className="flex flex-wrap justify-center gap-6 mt-12 text-sm text-gray-500">

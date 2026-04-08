@@ -69,7 +69,7 @@ INSERT INTO raffles (name, description, prize_image_url, prize_details, total_ti
 ),
 (
   'Collar con Aretes',
-  'Joyeria Marca NICE de 4 Baño de Oro 18 Quilates',
+  'Joyeria Marca NICE de 4 Baño de Oro 18 Kilates',
   '/images/CollarAretes.jpeg',
   'Diseño exclusivo, ideal para ocasiones especiales',
   250,

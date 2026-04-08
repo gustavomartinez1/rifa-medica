@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { createClient } from '@/shared/lib/supabase';
 import { HeroSection } from '@/features/hero/components/HeroSection';
 import { CauseSection } from '@/features/cause/components/CauseSection';
+import { WinnersSection } from '@/features/winners/components/WinnersSection';
 import { RaffleCard } from '@/features/raffles/components/RaffleCard';
 import { PurchaseForm } from '@/features/checkout/components/PurchaseForm';
 import { PaymentInstructions } from '@/features/checkout/components/PaymentInstructions';
@@ -27,6 +28,7 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [reservedTicketIds, setReservedTicketIds] = useState<string[]>([]);
   const [showError, setShowError] = useState<string | null>(null);
+  const raffleEnded = true; // La rifa ha terminado - ya no se pueden comprar boletos
 
   const supabase = createClient();
 
@@ -116,6 +118,10 @@ export default function Home() {
   }, [raffles]);
 
   const handleSelectTicket = (ticket: Ticket) => {
+    if (raffleEnded) {
+      setShowError('La rifa ha terminado. Ya no se pueden comprar boletos.');
+      return;
+    }
     if (ticket.status !== TICKET_STATES.DISPONIBLE) return;
     
     setSelectedTickets((prev) => {
@@ -229,8 +235,26 @@ export default function Home() {
     <main className="min-h-screen">
       <HeroSection onCtaClick={scrollToRaffles} />
       <CauseSection />
+      <WinnersSection />
 
       <section id="raffles-section" className="py-16 md:py-24 bg-gray-50">
+        {/* Banner de rifa terminada */}
+        {raffleEnded && (
+          <div className="max-w-6xl mx-auto px-4 mb-8">
+            <div className="bg-red-100 border-l-4 border-red-600 p-4 rounded-r-lg">
+              <div className="flex items-center gap-3">
+                <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <div>
+                  <p className="font-bold text-red-800">La rifa ha terminado</p>
+                  <p className="text-red-700 text-sm">El sorteo se realizó el 8 de abril de 2026. ¡Consulta los ganadores arriba!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Las 3 Rifas</h2>
