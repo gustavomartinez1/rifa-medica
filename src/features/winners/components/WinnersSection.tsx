@@ -1,8 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
-
 interface Winner {
   name: string;
   raffleNumber: number;
@@ -40,9 +37,6 @@ const winners: Winner[] = [
 ];
 
 export function WinnersSection() {
-  const [selectedWinner, setSelectedWinner] = useState<Winner | null>(null);
-  const [showEvidence, setShowEvidence] = useState(false);
-
   return (
     <section className="py-16 md:py-24 bg-gradient-to-br from-emerald-50 to-blue-50">
       <div className="max-w-6xl mx-auto px-4">
@@ -69,8 +63,7 @@ export function WinnersSection() {
           {winners.map((winner) => (
             <div
               key={winner.raffleNumber}
-              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow cursor-pointer transform hover:-translate-y-1"
-              onClick={() => setSelectedWinner(winner)}
+              className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow"
             >
               {/* Prize Image */}
               <div className="relative h-48 bg-gray-100">

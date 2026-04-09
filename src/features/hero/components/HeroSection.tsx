@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { CountdownTimer } from './CountdownTimer';
 import { Button } from '@/shared/ui/Button';
 import { RAFFLE_DATE } from '@/config/constants';
@@ -10,14 +10,10 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onCtaClick }: HeroSectionProps) {
-  const [raffleEnded, setRaffleEnded] = useState(false);
-
-  useEffect(() => {
+  const raffleEnded = useMemo(() => {
     const now = new Date();
     const raffleDate = new Date(RAFFLE_DATE);
-    if (now > raffleDate) {
-      setRaffleEnded(true);
-    }
+    return now > raffleDate;
   }, []);
 
   return (
