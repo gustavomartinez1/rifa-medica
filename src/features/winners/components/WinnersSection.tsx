@@ -14,12 +14,12 @@ const winners: Winner[] = [
     name: 'Francisca Zárate',
     raffleNumber: 1,
     prize: 'Collar y Aretes de Oro 18K',
-    ticketNumber: 4,
+    ticketNumber: 199,
     winnerImage: '/images/Ganador_SetCA.jpeg',
     proofImage: '/images/Comprobante_GanadorSetCA.jpeg',
   },
   {
-    name: 'Alejandro Montes Acosta',
+    name: 'Alejandra Montes Acosta',
     raffleNumber: 2,
     prize: 'Samsung Galaxy A13',
     ticketNumber: 90,
@@ -30,7 +30,7 @@ const winners: Winner[] = [
     name: 'Chuy Hermosillo',
     raffleNumber: 3,
     prize: 'Alexa Echo Pop',
-    ticketNumber: 199,
+    ticketNumber: 4,
     winnerImage: '/images/Ganador_Alexa.jpeg',
     proofImage: '/images/Comprobante_GanadorAlexa.jpeg',
   },
@@ -154,17 +154,17 @@ function obtenerGanador(ticketsVendidos) {
             <div className="bg-emerald-700 rounded-xl p-4">
               <p className="text-emerald-200 text-sm">Rifa 1 - Collar y Aretes</p>
               <p className="text-xl font-bold">Francisca Zárate</p>
-              <p className="text-emerald-200">Boleto #4</p>
+              <p className="text-emerald-200">Boleto #199</p>
             </div>
             <div className="bg-emerald-700 rounded-xl p-4">
               <p className="text-emerald-200 text-sm">Rifa 2 - Samsung Galaxy A13</p>
-              <p className="text-xl font-bold">Alejandro Montes Acosta</p>
+              <p className="text-xl font-bold">Alejandra Montes Acosta</p>
               <p className="text-emerald-200">Boleto #90</p>
             </div>
             <div className="bg-emerald-700 rounded-xl p-4">
               <p className="text-emerald-200 text-sm">Rifa 3 - Alexa Echo Pop</p>
               <p className="text-xl font-bold">Chuy Hermosillo</p>
-              <p className="text-emerald-200">Boleto #199</p>
+              <p className="text-emerald-200">Boleto #4</p>
             </div>
           </div>
         </div>
